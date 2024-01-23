@@ -9,7 +9,7 @@ model_path = 'openlm-research/open_llama_3b_v2'
 class TextGenerationModel:
     def __init__(self, model_path):
         self.tokenizer = LlamaTokenizer.from_pretrained(model_path)
-        self.model = LlamaForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map="auto")
+        self.model = LlamaForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map="cpu")
 
     def generate(self, prompt: str, max_new_tokens: int = 32):
         input_ids = self.tokenizer(prompt, return_tensors="pt").input_ids 
